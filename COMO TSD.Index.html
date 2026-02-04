@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pergunta importante! ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Imagem de fundo temática */
+            background: url('https://th.bing.com/th/id/R.5f20556b184f4dc0295979f67a2f5858?rik=jKPhMSYmSDpAnA&pid=ImgRaw&r=0') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Overlay para escurecer um pouco o fundo e dar destaque ao card */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+        }
+
+        #game-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.85); /* Fundo branco levemente transparente */
+            backdrop-filter: blur(10px); /* Efeito de vidro embaçado */
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 85%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .gif-dragao {
+            width: 120px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            height: 60px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #btn-sim {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        #btn-sim:hover {
+            transform: scale(1.1);
+            background-color: #27ae60;
+        }
+
+        #btn-nao {
+            background-color: #e74c3c;
+            color: white;
+            position: absolute; /* Essencial para o teleporte */
+        }
+
+        #mensagem-final {
+            display: none;
+        }
+
+        .sucesso-h1 {
+            color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <div id="conteudo-inicial">
+            <img class="gif-dragao" src="https://tse2.mm.bing.net/th/id/OIP.tSWfiQ_hLEl19uxeGTzrmwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Banguela">
+            <h1>Você é minha baixinha?</h1>
+            <div class="buttons">
+                <button id="btn-sim" onclick="ganhou()">Sim!</button>
+                <button id="btn-nao" onmouseover="foge()" onclick="foge()">Não</button>
+            </div>
+        </div>
+
+        <div id="mensagem-final">
+            <img class="gif-dragao" src="https://tse3.mm.bing.net/th/id/OIP.0r4KrsmyTdqs6oAuitTChwHaNK?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Banguela Feliz">
+            <h1 class="sucesso-h1">Isso aí, miúdinha! ❤️</h1>
+            <p>eu já sabia! kkkkkkkkkk</p>
+        </div>
+    </div>
+
+    <script>
+        function foge() {
+            const btnNao = document.getElementById('btn-nao');
+            
+            // Calcula limites para o botão não sair da tela visível
+            const larguraTela = window.innerWidth - btnNao.offsetWidth;
+            const alturaTela = window.innerHeight - btnNao.offsetHeight;
+            
+            // Gera coordenadas aleatórias
+            const novoX = Math.random() * larguraTela;
+            const novoY = Math.random() * alturaTela;
+            
+            btnNao.style.position = 'fixed';
+            btnNao.style.left = novoX + 'px';
+            btnNao.style.top = novoY + 'px';
+        }
+
+        function ganhou() {
+            document.getElementById('conteudo-inicial').style.display = 'none';
+            document.getElementById('mensagem-final').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
